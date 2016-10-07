@@ -20,10 +20,20 @@ public class ManageLoginController {
 	public String toLogin(){
 		return "login";
 	}
+	
 	@GET
-	@RequestMapping(value="/login/{userName}/{password}")
-	public String login(@PathVariable("userName")String userName,@PathVariable("password")String password){
-		
+	@RequestMapping(value="/login")
+	public String login(@QueryParameter("userName")String userName,@QueryParameter("password")String password){
+		if(StringUtils.isBlank("userName")){
+			
+		}
+		if(StringUtils.isBlank("password")){
+			
+		}
+		ManagerAdmin admin = loginService.selectAdmin(userName, password);
+		if(amdin != null){
+			
+		}
 		return "";
 	}
 }
