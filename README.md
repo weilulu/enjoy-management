@@ -1,2 +1,0 @@
-# enjoy-management
-for admininstrator
