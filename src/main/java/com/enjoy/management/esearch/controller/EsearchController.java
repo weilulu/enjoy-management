@@ -21,12 +21,15 @@ public class EsearchController {
 
 	@RequestMapping(value="add")
 	public String add() throws UnknownHostException{
-		Settings settings = Settings.settingsBuilder().put("cluster.name", "node1").build();
+		/*Settings settings = Settings.settingsBuilder().put("cluster.name", "node-1").build();
         Builder builder = TransportClient.builder().settings(settings);
         Client client = builder.build().addTransportAddress(
 				new InetSocketTransportAddress(InetAddress
+						.getByName("127.0.0.1"), 9300));*/
+		Client client = TransportClient.builder().build().addTransportAddress(
+				new InetSocketTransportAddress(InetAddress
 						.getByName("127.0.0.1"), 9300));
-
+		
 		List<String> jsonData = EsearchUtils.getJsonData();
 		for(int i=0;i<jsonData.size();i++){
 			IndexResponse response = client.prepareIndex("blog","article").setSource(jsonData.get(i)).get();
@@ -37,4 +40,6 @@ public class EsearchController {
 		client.close();
 		return "search";
 	}
+	
+	 
 }
